@@ -8,8 +8,8 @@ import json
 metrics_to_extract = {
     # Font name
     "AMS-Regular": {
-        u"\u21e2": None,  # \dashrightarrow
-        u"\u21e0": None,  # \dashleftarrow
+        "\u21e2": None,  # \dashrightarrow
+        "\u21e0": None,  # \dashleftarrow
     },
     "Main-Regular": {
         # Skew and italic metrics can't be easily parsed from the TTF. Instead,
@@ -17,41 +17,41 @@ metrics_to_extract = {
         # from the same font with correct italic and skew metrics. A character
         # maps to None if it doesn't have a base.
 
-        u"\u2260": None,  # \neq
-        u"\u2245": None,  # \cong
-        u"\u0020": None,  # space
-        u"\u00a0": None,  # nbsp
-        u"\u2026": None,  # \ldots
-        u"\u22ef": None,  # \cdots
-        u"\u22f1": None,  # \ddots
-        u"\u22ee": None,  # \vdots
-        u"\u22ee": None,  # \vdots
-        u"\u22a8": None,  # \models
-        u"\u22c8": None,  # \bowtie
-        u"\u2250": None,  # \doteq
-        u"\u23b0": None,  # \lmoustache
-        u"\u23b1": None,  # \rmoustache
-        u"\u27ee": None,  # \lgroup
-        u"\u27ef": None,  # \rgroup
-        u"\u27f5": None,  # \longleftarrow
-        u"\u27f8": None,  # \Longleftarrow
-        u"\u27f6": None,  # \longrightarrow
-        u"\u27f9": None,  # \Longrightarrow
-        u"\u27f7": None,  # \longleftrightarrow
-        u"\u27fa": None,  # \Longleftrightarrow
-        u"\u21a6": None,  # \mapsto
-        u"\u27fc": None,  # \longmapsto
-        u"\u21a9": None,  # \hookleftarrow
-        u"\u21aa": None,  # \hookrightarrow
-        u"\u21cc": None,  # \rightleftharpoons
+        "\u2260": None,  # \neq
+        "\u2245": None,  # \cong
+        "\u0020": None,  # space
+        "\u00a0": None,  # nbsp
+        "\u2026": None,  # \ldots
+        "\u22ef": None,  # \cdots
+        "\u22f1": None,  # \ddots
+        "\u22ee": None,  # \vdots
+        "\u22ee": None,  # \vdots
+        "\u22a8": None,  # \models
+        "\u22c8": None,  # \bowtie
+        "\u2250": None,  # \doteq
+        "\u23b0": None,  # \lmoustache
+        "\u23b1": None,  # \rmoustache
+        "\u27ee": None,  # \lgroup
+        "\u27ef": None,  # \rgroup
+        "\u27f5": None,  # \longleftarrow
+        "\u27f8": None,  # \Longleftarrow
+        "\u27f6": None,  # \longrightarrow
+        "\u27f9": None,  # \Longrightarrow
+        "\u27f7": None,  # \longleftrightarrow
+        "\u27fa": None,  # \Longleftrightarrow
+        "\u21a6": None,  # \mapsto
+        "\u27fc": None,  # \longmapsto
+        "\u21a9": None,  # \hookleftarrow
+        "\u21aa": None,  # \hookrightarrow
+        "\u21cc": None,  # \rightleftharpoons
     },
     "Size1-Regular": {
-        u"\u222c": u"\u222b",  # \iint, based on \int
-        u"\u222d": u"\u222b",  # \iiint, based on \int
+        "\u222c": "\u222b",  # \iint, based on \int
+        "\u222d": "\u222b",  # \iiint, based on \int
     },
     "Size2-Regular": {
-        u"\u222c": u"\u222b",  # \iint, based on \int
-        u"\u222d": u"\u222b",  # \iiint, based on \int
+        "\u222c": "\u222b",  # \iint, based on \int
+        "\u222d": "\u222b",  # \iiint, based on \int
     },
 }
 
@@ -59,7 +59,7 @@ metrics_to_extract = {
 def main():
     start_json = json.load(sys.stdin)
 
-    for font, chars in metrics_to_extract.iteritems():
+    for font, chars in metrics_to_extract.items():
         fontInfo = TTFont("../static/fonts/KaTeX_" + font + ".ttf")
         glyf = fontInfo["glyf"]
         unitsPerEm = float(fontInfo["head"].unitsPerEm)
@@ -72,7 +72,7 @@ def main():
                 if (t.platformID == 0)
                 or (t.platformID == 3 and t.platEncID in (1, 10))]
 
-        for char, base_char in chars.iteritems():
+        for char, base_char in chars.items():
             code = ord(char)
             names = set(t.get(code) for t in cmap)
             if not names:
